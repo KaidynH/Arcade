@@ -41,4 +41,4 @@ while True:
 
 
     pygame.display.update()
-    pygame.time.delay(100)
+    pygame.time.delay(20)

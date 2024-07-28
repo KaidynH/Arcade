@@ -6,11 +6,17 @@ class Bumblebee(Enemy):
         # Initialize parent class
         super().__init__('Galaga\Images\Bumblebee.png', 30, 5, 350, 400, 90)
 
-        # Bee path
-        self.path = [(200, 200), (600,500)]
-
         # Position along the path
         self.position = 0
+
+        # Bee path
+        self.path = [(350, 400), (200, 200), (600,500), (100,700)]
+        # Directions the bee will face along its path
+        self.angles = [round(math.degrees(math.atan2(self.path[i][0] - self.path[i-1][0], self.path[i][1] - self.path[i-1][1]))) for i in range(1, len(self.path))]
+
+        for i in range(len(self.angles)):
+            if self.angles[i] < 0:
+                self.angles[i] = self.angles[i] + 360
 
         # Path variables for readability
         self.update_vars()
@@ -18,19 +24,31 @@ class Bumblebee(Enemy):
     
     # Update coordinate and distance variables
     def update_vars(self):
-        self.opp = self.path[self.position][0] - self.x
-        self.adj = self.path[self.position][1] - self.y
+        self.adj = self.path[self.position][0] - self.x
+        self.opp = self.path[self.position][1] - self.y
         self.path_distance = (self.opp**2 + self.adj**2)**(1/2)
-        self.path_angle = math.degrees(math.atan2(self.opp, self.adj))
-        print(self.path_angle - self.angle)
 
     
     # Display actions
     def action(self, screen):
-        # Turn the bee towards the direction it's moving
-        if abs(self.angle - self.path_angle) > 5:
-            self.image = self.rotate(5)
-            self.angle += self.path_angle - self.angle
+
+        # Turn the bee towards the direction it's moving if needed 
+        if self.position < len(self.angles):
+            angle_difference = self.angles[self.position] - self.angle
+            if abs(angle_difference) >= 30:
+                angle_change = 25 if angle_difference > 0 else -25
+                self.image = self.rotate(angle_change)
+                self.angle += angle_change
+                print('yes', self.angle, self.angles[self.position], angle_difference)
+            elif abs(angle_difference) < 30 and abs(angle_difference) >= 10:
+                angle_change = 5 if angle_difference > 0 else -5
+                self.image = self.rotate(angle_change)
+                self.angle += angle_change
+                print('mid', self.angle, self.angles[self.position], angle_difference)
+            elif abs(angle_difference) > 5 and abs(angle_difference) < 10:
+                self.image = self.rotate(angle_difference/2)
+                self.angle += angle_difference/2
+                print('no', self.angle, self.angles[self.position], angle_difference)
 
         # Move the bee along its path
         if self.path_distance > 0:

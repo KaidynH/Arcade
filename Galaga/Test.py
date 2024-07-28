@@ -14,13 +14,15 @@ bullet_list = []
 
 bee = Bumblebee()
 
+print(bee.angles)
+
 x, y = 350, 400
 
-while True:
-    screen.fill((0,0,0))
+# while True:
+#     screen.fill((0,0,0))
 
-    bee.action(screen)
-    bee.image = bee.rotate(45)
+#     bee.action(screen)
+#     bee.image = bee.rotate(45)
 
-    pygame.display.update()
-    pygame.time.delay(500)
+#     pygame.display.update()
+#     pygame.time.delay(500)
