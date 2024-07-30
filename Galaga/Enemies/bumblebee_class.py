@@ -1,4 +1,5 @@
 import pygame, math
+import numpy as np
 from Enemies.enemy_class import Enemy
 
 class Bumblebee(Enemy):

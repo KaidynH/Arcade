@@ -72,8 +72,8 @@ class Enemy():
             rise /= 1.5
 
         # Move the enemy
-        self.rect.centerx = round(self.x + run)
-        self.rect.centery = round(self.y + rise)
+        self.rect.centerx = self.x + run
+        self.rect.centery = self.y + rise
 
         # Update coordinate variables
         self.update_coordinates()
