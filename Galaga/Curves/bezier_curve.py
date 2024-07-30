@@ -5,7 +5,7 @@ def cubic_bezier(t, P0, P1, P2, P3):
 
 
 def draw_line(control_points):
-    t_values = np.linspace(0, 1, 100)
+    t_values = np.linspace(0, 1, 50)
     curve_points = np.array([cubic_bezier(t, *control_points) for t in t_values])
     curve_points = np.round(curve_points)
     return curve_points

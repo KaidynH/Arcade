@@ -11,15 +11,9 @@ pygame.display.set_caption('Galaga')
 
 player = Player()
 
-P0 = np.array([274, -26])
-P1 = np.array([1000, 150])
-P2 = np.array([-900, 550])
-P3 = np.array([600, 700])
 
-control_points = np.array([P0, P1, P2, P3])
-
-
-bees = [Bumblebee(274, -50, bezier_curve.draw_line(control_points))]
+bees = [Bumblebee(275, -50, 'l', 0), Bumblebee(275, -100, 'l', 1), Bumblebee(275, -150, 'l', 2), Bumblebee(275, -200, 'l', 3),
+        Bumblebee(425, -50, 'r', 0), Bumblebee(425, -100, 'r', 1), Bumblebee(425, -150, 'r', 2), Bumblebee(425, -200, 'r', 3)]
 
 # bees = [Bumblebee(274, -50, np.array([[266, 67], [250, 74], [348, 1000], [498, 247]]))]
 
@@ -57,7 +51,10 @@ while running:
     for bee in bees:
         bee.action(screen)
     
+
+
+    
     pygame.display.update()
     pygame.time.delay(5)
 
-pygame.QUIT()
+pygame.quit()
