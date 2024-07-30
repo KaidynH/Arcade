@@ -12,10 +12,8 @@ pygame.display.set_caption('Galaga')
 player = Player()
 
 
-bees = [Bumblebee(275, -50, 'l', 0), Bumblebee(275, -100, 'l', 1), Bumblebee(275, -150, 'l', 2), Bumblebee(275, -200, 'l', 3),
-        Bumblebee(425, -50, 'r', 0), Bumblebee(425, -100, 'r', 1), Bumblebee(425, -150, 'r', 2), Bumblebee(425, -200, 'r', 3)]
-
-# bees = [Bumblebee(274, -50, np.array([[266, 67], [250, 74], [348, 1000], [498, 247]]))]
+bees = [Bumblebee('l', 0, 0), Bumblebee('l', 1, 1), Bumblebee('l', 2, 2), Bumblebee('l', 3, 3),
+        Bumblebee('r', 0, 4), Bumblebee('r', 1, 5), Bumblebee('r', 2, 6), Bumblebee('r', 3, 7)]
 
 
 bullet_list = []

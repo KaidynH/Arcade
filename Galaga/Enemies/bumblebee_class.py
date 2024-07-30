@@ -4,9 +4,23 @@ from Enemies.enemy_class import Enemy
 from Curves import bezier_curve
 
 class Bumblebee(Enemy):
-    def __init__(self, pX, pY, pEntry, pPos):
+    def __init__(self, pEntry, pPos, pFormation):
+        # Initial Coordinates
+        x = 425 if pEntry == 'r' else 275
+        y = -50 - (50 * pPos)
+
         # Initialize parent class
-        super().__init__('Galaga\Images\Bumblebee.png', 30, 5, pX, pY, 90)
+        super().__init__('Galaga\Images\Bumblebee.png', 30, 5, x, y, 90)
+
+        # Bee position indexes related to the formation parameter
+        self.formation_indexes = np.array([ [0, 5], [0, 6], [1, 5], [1, 6], [0, 4], [0, 7], [1, 4], [1, 7], [0, 3], [0, 8], [1, 3], [1, 8], [0, 2], [0, 9], [1, 2], [1, 9], [0, 1], [0, 10], [1, 1], [1, 10], [0, 0], [0, 11], [1, 0], [1, 11] ])
+
+        # Bee formation positions
+        self.formations = np.array([[[57 + (i * 45), 200] for i in range (1, 13)], [[57 + (i * 45), 250] for i in range (1, 13)]])
+
+        # Bee position in formation
+        self.formaion = self.formations[self.formation_indexes[pFormation][0]][self.formation_indexes[pFormation][1]]
+
 
         # Position along the path
         self.position = 1
@@ -14,6 +28,7 @@ class Bumblebee(Enemy):
         # Bee path
         self.path = self.Paths.r_entry() if pEntry == 'r' else self.Paths.l_entry()
         self.path = self.path[:(-(pPos*3))-1]
+
         # Directions the bee will face along its path
         self.angles = []
         for i in range(1,len(self.path)):
