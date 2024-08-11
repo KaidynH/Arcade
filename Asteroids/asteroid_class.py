@@ -144,6 +144,8 @@ class Asteroid:
                 # Split the asteroid if it is a big or small asteroid
                 else:
                     self.split(asteroid_list, asteroid)
+                break
+                
     
 
     # Runs asteroid actions

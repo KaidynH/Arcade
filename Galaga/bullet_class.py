@@ -2,6 +2,9 @@ import pygame
 
 class Bullet:
     def __init__(self, x, y):
+        
+        # Size of the bullet hit box
+        self.size = 7
 
         # Speed the bullet moves
         self.speed = 5
@@ -20,6 +23,3 @@ class Bullet:
     def action(self, screen):
         # Move the bullet up the screen
         self.y -= self.speed
-
-        # Draw the bullet to the screen
-        screen.blit(self.image, (self.x, self.y))

@@ -6,7 +6,7 @@ class Player:
         self.size = 40
 
         # Speed of the ship
-        self.speed = 2
+        self.speed = 3
 
         # Coordinates of the top left of the ship
         self.x = 250
@@ -39,8 +39,6 @@ class Player:
         if keys[pygame.K_LEFT]:
             self.move('left')
         
-        # Draw the ship to the screen
-        screen.blit(self.image, (self.x, self.y))
 
         
 
